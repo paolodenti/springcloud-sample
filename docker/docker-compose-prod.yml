@@ -22,13 +22,33 @@ services:
                 window: 120s
         depends_on:
             - configserver
+            - eurekaserver
         networks:
             - configserver-net
 
-    client-1:
-        image: paolodenti/client-1:latest
+    rest-api:
+        image: paolodenti/rest-api:latest
         ports:
             - "8080:8080"
+        environment:
+            - "SPRING_PROFILES_ACTIVE=prod"
+            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
+            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:8070/eureka/"
+        deploy:
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                window: 120s
+        depends_on:
+            - configserver
+            - eurekaserver
+        networks:
+            - configserver-net
+
+    service-1:
+        image: paolodenti/service-1:latest
+        ports:
+            - "8081:8081"
         environment:
             - "SPRING_PROFILES_ACTIVE=prod"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"

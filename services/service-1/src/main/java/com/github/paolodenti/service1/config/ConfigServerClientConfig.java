@@ -1,10 +1,10 @@
-package com.github.paolodenti.client1.config;
+package com.github.paolodenti.service1.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "client-1")
+@ConfigurationProperties(prefix = "service-1")
 public class ConfigServerClientConfig {
 
     private String a;

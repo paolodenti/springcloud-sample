@@ -15,20 +15,13 @@ Run one of:
 
 * config server on port 8090
 * eureka server on port 8070
-* client-1 on port 8080
+* service-1 on port 8080
 
 ## How to build everything manually for compose
 
 ```bash
-( cd services/configserver ; mvn spring-boot:build-image )
-( cd services/eurekaserver ; mvn spring-boot:build-image )
-( cd services/client-1 ; mvn spring-boot:build-image )
-```
-
-## Publish images to docker hub
-
-```bash
-docker push paolodenti/configserver:latest
-docker push paolodenti/eurekaserver:latest
-docker push paolodenti/client-1:latest
+( cd services/configserver ; mvn clean spring-boot:build-image )
+( cd services/eurekaserver ; mvn clean spring-boot:build-image )
+( cd services/service-1 ; mvn clean spring-boot:build-image )
+( cd services/rest-api ; mvn clean spring-boot:build-image )
 ```
