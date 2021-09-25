@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+    configserver:
+        image: paolodenti/configserver:latest
+        environment:
+            - "ENCRYPT_KEY=${ENCRYPT_KEY}"
+        networks:
+            - configserver-net
+
+    eurekaserver:
+        image: paolodenti/eurekaserver:latest
+        ports:
+            - "8070:8070"
+        environment:
+            - "SPRING_PROFILES_ACTIVE=dev"
+            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
+        deploy:
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                window: 120s
+        depends_on:
+            - configserver
+        networks:
+            - configserver-net
+
+    client-1:
+        image: paolodenti/client-1:latest
+        ports:
+            - "8080:8080"
+        environment:
+            - "SPRING_PROFILES_ACTIVE=prod"
+            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
+            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:8070/eureka/"
+        deploy:
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                window: 120s
+        depends_on:
+            - configserver
+        networks:
+            - configserver-net
+
+networks:
+    configserver-net:
