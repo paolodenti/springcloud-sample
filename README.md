@@ -26,15 +26,43 @@
 ## Entrypoints
 
 * Eureka: [http://127.0.0.1:9000](http://127.0.0.1:9000)
-* Rest API products invoking product service: [http://127.0.0.1:8080/product](http://127.0.0.1:8080/product)
-* Props from config server: [http://127.0.0.1:8080/test-property](http://127.0.0.1:8080/test-property)
+* Config Server: on `http://127.0.0.1:8000` e.g. [http://127.0.0.1:8000/product/default](http://127.0.0.1:8000/product/default)
+* Products h2 console: [http://127.0.0.1:8081/h2-console](http://127.0.0.1:8081/h2-console)
+  * jdbc:h2:mem:products
+  * jdbc:h2:mem:products-dev
+  * jdbc:h2:mem:products-prod
+* Products props from config server: [http://127.0.0.1:8081/test-property](http://127.0.0.1:8081/test-property)
+* Dashboard props from config server: [http://127.0.0.1:8080/test-property](http://127.0.0.1:8080/test-property)
+* Products: [http://127.0.0.1:8081/product](http://127.0.0.1:8081/product)
+* Dashboard (invoking multiple services): [http://127.0.0.1:8080/dashboard](http://127.0.0.1:8080/dashboard)
 
-## Additional Entrypoints when running locally
+## Resilience
 
-* Config Server: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-* product service: [http://127.0.0.1:8081/product](http://127.0.0.1:8081/product)
-* Props from config server: [http://127.0.0.1:8081/test-property](http://127.0.0.1:8081/test-property)
-* h2 console: [http://127.0.0.1:8081/h2-console](http://127.0.0.1:8081/h2-console)
+`http://127.0.0.1:8080/dashboard` is without resilience
+
+### Circuit Breaker
+
+`http://127.0.0.1:8080/dashboard/circuitbreaker` has a circuit breaker with 3000ms threshold.
+
+Set a simulated network delay on the products microservice using [http://192.168.150.151:8081/product/conditioner/{delay}](http://192.168.150.151:8081/product/conditioner/{delay}) to set a delay in ms, e.g. `http://192.168.150.151:8081/product/conditioner/4000` for 4 seconds delay, triggering a circuit breaker failure.
+
+After setting the delay, invoke `http://127.0.0.1:8080/dashboard/circuitbreaker` and analyze behavior in `http://1127.0.0.1:8080/actuator/circuitbreakerevents/productsCircuitbreaker`.
+
+Use [http://192.168.150.151:8081/product/conditioner/0] to remove the simulated network delay(`http://192.168.150.151:8081/product/conditioner/0`) to remove the simulated network delay.
+
+### Retry
+
+`http://127.0.0.1:8080/dashboard/retry` has a retry with 3 max attempt.
+
+Create a fake delay as for the circuit breaker.
+
+After setting the delay, invoke `http://127.0.0.1:8080/dashboard/retry` and analyze behavior in `http://127.0.0.1:8080/actuator/retryevents/productsRetry`.
+
+### Rate Limiter
+
+`http://127.0.0.1:8080/dashboard/rateLimiter` has a rat eof 1 request every 5 seconds, with 5 seconds waiting time.
+
+After setting the delay, invoke `http://127.0.0.1:8080/dashboard/retry` and analyze behavior in `http://127.0.0.1:8080/actuator/retryevents/productsRetry`.
 
 ## Build everything manually for compose
 
