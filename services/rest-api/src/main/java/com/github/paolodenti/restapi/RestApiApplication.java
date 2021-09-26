@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @RefreshScope
 @EnableFeignClients
-public class ConfigserverClientApplication {
+public class RestApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ConfigserverClientApplication.class, args);
+        SpringApplication.run(RestApiApplication.class, args);
     }
 
 }

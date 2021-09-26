@@ -1,6 +1,6 @@
-package com.github.paolodenti.service1.web;
+package com.github.paolodenti.products.web;
 
-import com.github.paolodenti.service1.config.ConfigServerClientConfig;
+import com.github.paolodenti.products.config.ConfigServerClientConfig;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("/test-property")
+public class TestPropertyController {
 
     private final ConfigServerClientConfig clientConfig;
 
-    public TestController(ConfigServerClientConfig clientConfig) {
+    public TestPropertyController(ConfigServerClientConfig clientConfig) {
         this.clientConfig = clientConfig;
     }
 

@@ -45,8 +45,8 @@ services:
         networks:
             - configserver-net
 
-    service-1-1:
-        image: paolodenti/service-1:latest
+    products-1:
+        image: paolodenti/products:latest
         environment:
             - "SPRING_PROFILES_ACTIVE=prod"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
@@ -61,8 +61,8 @@ services:
         networks:
             - configserver-net
 
-    service-1-2:
-        image: paolodenti/service-1:latest
+    products-2:
+        image: paolodenti/products:latest
         environment:
             - "SPRING_PROFILES_ACTIVE=prod"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
@@ -77,8 +77,8 @@ services:
         networks:
             - configserver-net
 
-    service-1-3:
-        image: paolodenti/service-1:latest
+    products-3:
+        image: paolodenti/products:latest
         environment:
             - "SPRING_PROFILES_ACTIVE=prod"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
