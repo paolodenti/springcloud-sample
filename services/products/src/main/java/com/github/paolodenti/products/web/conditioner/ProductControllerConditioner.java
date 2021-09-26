@@ -29,7 +29,7 @@ public class ProductControllerConditioner {
         if (delay > 0L) {
             logger.warn("Conditioner is on, sleeping for {} milliseconds", delay);
             try {
-                Thread.sleep(5000);
+                Thread.sleep(delay);
                 logger.warn("back from sleeping");
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
