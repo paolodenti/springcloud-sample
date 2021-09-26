@@ -1,10 +1,10 @@
-package com.github.paolodenti.restapi.config;
+package com.github.paolodenti.dashboard.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "rest-api")
+@ConfigurationProperties(prefix = "dashboard")
 public class ConfigServerClientConfig {
 
     private String theProperty;

@@ -1,4 +1,4 @@
-package com.github.paolodenti.restapi.model;
+package com.github.paolodenti.dashboard.model;
 
 import lombok.Getter;
 import lombok.Setter;

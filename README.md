@@ -18,20 +18,20 @@
 
 ## Info
 
-* config server on port 8090
-* eureka server on port 8070
-* rest-api on port 8080
+* config server on port 8000
+* eureka server on port 9000
+* dashboard on port 8080
 * products on port 8081
 
 ## Entrypoints
 
-* Eureka: [http://127.0.0.1:8070](http://127.0.0.1:8070)
+* Eureka: [http://127.0.0.1:9000](http://127.0.0.1:9000)
 * Rest API products invoking product service: [http://127.0.0.1:8080/product](http://127.0.0.1:8080/product)
 * Props from config server: [http://127.0.0.1:8080/test-property](http://127.0.0.1:8080/test-property)
 
 ## Additional Entrypoints when running locally
 
-* Config Server: [http://127.0.0.1:8090](http://127.0.0.1:8090)
+* Config Server: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 * product service: [http://127.0.0.1:8081/product](http://127.0.0.1:8081/product)
 * Props from config server: [http://127.0.0.1:8081/test-property](http://127.0.0.1:8081/test-property)
 * h2 console: [http://127.0.0.1:8081/h2-console](http://127.0.0.1:8081/h2-console)
@@ -42,5 +42,5 @@
 ( cd services/configserver ; mvn clean spring-boot:build-image )
 ( cd services/eurekaserver ; mvn clean spring-boot:build-image )
 ( cd services/products ; mvn clean spring-boot:build-image )
-( cd services/rest-api ; mvn clean spring-boot:build-image )
+( cd services/dashboard ; mvn clean spring-boot:build-image )
 ```
