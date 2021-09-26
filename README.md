@@ -8,8 +8,8 @@
 
 Run one of:
 
-1. `docker-compose -f docker/docker-compose-dev.yml up`
-2. `ENCRYPT_KEY=MY_SUPER_SECRET_PASSWORD docker-compose -f docker/docker-compose-prod.yml up`
+1. `docker compose -f docker/docker-compose-dev.yml up`
+2. `ENCRYPT_KEY=MY_SUPER_SECRET_PASSWORD docker compose -f docker/docker-compose-prod.yml up`
 
 ## Info
 
