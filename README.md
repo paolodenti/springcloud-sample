@@ -16,13 +16,13 @@ Run one of:
 * config server on port 8090
 * eureka server on port 8070
 * rest-api on port 8080
-* service-1 on port 8081
+* products on port 8081
 
 ## How to build everything manually for compose
 
 ```bash
 ( cd services/configserver ; mvn clean spring-boot:build-image )
 ( cd services/eurekaserver ; mvn clean spring-boot:build-image )
-( cd services/service-1 ; mvn clean spring-boot:build-image )
+( cd services/products ; mvn clean spring-boot:build-image )
 ( cd services/rest-api ; mvn clean spring-boot:build-image )
 ```

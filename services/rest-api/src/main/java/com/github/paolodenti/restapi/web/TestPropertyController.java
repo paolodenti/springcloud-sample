@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("/test-property")
+public class TestPropertyController {
 
     private final ConfigServerClientConfig clientConfig;
 
-    public TestController(ConfigServerClientConfig clientConfig) {
+    public TestPropertyController(ConfigServerClientConfig clientConfig) {
         this.clientConfig = clientConfig;
     }
 
