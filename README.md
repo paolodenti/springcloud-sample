@@ -4,6 +4,10 @@
 * Eureka Discovery
 * Cloud Config Server with Encryption
 
+<!-- markdownlint-disable MD036 -->
+**Single code base just for test simplicity**
+<!-- markdownlint-enable MD036 -->
+
 ## Start via Docker Compose
 
 Run one of:
