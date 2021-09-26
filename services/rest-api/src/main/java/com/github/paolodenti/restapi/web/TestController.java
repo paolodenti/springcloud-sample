@@ -1,6 +1,6 @@
-package com.github.paolodenti.client1.web;
+package com.github.paolodenti.restapi.web;
 
-import com.github.paolodenti.client1.config.ConfigServerClientConfig;
+import com.github.paolodenti.restapi.config.ConfigServerClientConfig;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +19,6 @@ public class TestController {
 
     @GetMapping
     public Map<String, String> test() {
-        return Map.of("a", clientConfig.getA(), "secret", clientConfig.getSecret());
+        return Map.of("theProperty", clientConfig.getTheProperty());
     }
 }
