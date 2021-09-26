@@ -15,7 +15,8 @@ Run one of:
 
 * config server on port 8090
 * eureka server on port 8070
-* service-1 on port 8080
+* rest-api on port 8080
+* service-1 on port 8081
 
 ## How to build everything manually for compose
 
