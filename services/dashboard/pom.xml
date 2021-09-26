@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.github.paolodenti</groupId>
-	<artifactId>rest-api</artifactId>
+	<artifactId>dashboard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rest-api</name>
+	<name>dashboard</name>
 	<description>Demo configserver client for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>

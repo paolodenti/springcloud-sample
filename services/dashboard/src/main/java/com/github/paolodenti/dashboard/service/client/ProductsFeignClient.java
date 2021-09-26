@@ -1,6 +1,6 @@
-package com.github.paolodenti.restapi.service.client;
+package com.github.paolodenti.dashboard.service.client;
 
-import com.github.paolodenti.restapi.model.Product;
+import com.github.paolodenti.dashboard.model.Product;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -11,10 +11,10 @@ services:
     eurekaserver:
         image: paolodenti/eurekaserver:latest
         ports:
-            - "8070:8070"
+            - "9000:9000"
         environment:
             - "SPRING_PROFILES_ACTIVE=dev"
-            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
+            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -26,14 +26,14 @@ services:
         networks:
             - configserver-net
 
-    rest-api:
-        image: paolodenti/rest-api:latest
+    dashboard:
+        image: paolodenti/dashboard:latest
         ports:
             - "8080:8080"
         environment:
             - "SPRING_PROFILES_ACTIVE=prod"
-            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
-            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:8070/eureka/"
+            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
+            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -47,10 +47,12 @@ services:
 
     products-1:
         image: paolodenti/products:latest
+        ports:
+            - "8081:8081"
         environment:
             - "SPRING_PROFILES_ACTIVE=prod"
-            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
-            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:8070/eureka/"
+            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
+            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -63,10 +65,12 @@ services:
 
     products-2:
         image: paolodenti/products:latest
+        ports:
+            - "8082:8081"
         environment:
             - "SPRING_PROFILES_ACTIVE=prod"
-            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
-            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:8070/eureka/"
+            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
+            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -79,10 +83,12 @@ services:
 
     products-3:
         image: paolodenti/products:latest
+        ports:
+            - "8083:8081"
         environment:
             - "SPRING_PROFILES_ACTIVE=prod"
-            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8090"
-            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:8070/eureka/"
+            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
+            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
         deploy:
             restart_policy:
                 condition: on-failure
