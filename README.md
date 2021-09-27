@@ -29,9 +29,9 @@
 * Eureka: [http://127.0.0.1:9000](http://127.0.0.1:9000)
 * Config Server: on `http://127.0.0.1:8000` e.g. [http://127.0.0.1:8000/product/default](http://127.0.0.1:8000/product/default)
 * Products h2 console: [http://127.0.0.1:8081/h2-console](http://127.0.0.1:8081/h2-console)
-  * jdbc:h2:mem:products
-  * jdbc:h2:mem:products-dev
-  * jdbc:h2:mem:products-prod
+  * default profile: `jdbc:h2:mem:products`
+  * dev profile: `jdbc:h2:mem:products-dev`
+  * prod profile: `jdbc:h2:mem:products-prod`
 * Products props from config server: [http://127.0.0.1:8081/test-property](http://127.0.0.1:8081/test-property)
 * Dashboard props from config server: [http://127.0.0.1:8080/test-property](http://127.0.0.1:8080/test-property)
 * Products: [http://127.0.0.1:8081/product](http://127.0.0.1:8081/product)
