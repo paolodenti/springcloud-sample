@@ -5,6 +5,7 @@
 * Cloud Config Server with Encryption
 * JPA configuration from Config Server
 * Eureka load balancing on backend service
+* Resilience samples with Circuit Breaker, Retry, Rate Limiter
 * **Single code base just for sample purposes**
 
 ## Start locally via Docker Compose
