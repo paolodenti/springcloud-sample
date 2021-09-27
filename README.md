@@ -48,7 +48,7 @@
 
 Set a simulated network delay on the products microservice using [http://127.0.0.1:8081/product/conditioner/{delay}](http://127.0.0.1:8081/product/conditioner/{delay}) to set a delay in ms, e.g. `http://127.0.0.1:8081/product/conditioner/4000` for 4 seconds delay, triggering a circuit breaker failure.
 
-After setting the delay, invoke `http://127.0.0.1:8080/dashboard/circuitbreaker` and analyze behavior in `http://1127.0.0.1:8080/actuator/circuitbreakerevents/productsCircuitbreaker`.
+After setting the delay, invoke `http://127.0.0.1:8080/dashboard/circuitbreaker` and analyze behavior in `http://127.0.0.1:8080/actuator/circuitbreakerevents/productsCircuitbreaker`.
 
 Use [http://127.0.0.1:8081/product/conditioner/0] to remove the simulated network delay(`http://127.0.0.1:8081/product/conditioner/0`) to remove the simulated network delay.
 
