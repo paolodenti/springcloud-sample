@@ -7,6 +7,7 @@
 * Eureka load balancing on backend service
 * Resilience samples with Circuit Breaker, Retry, Rate Limiter
 * **Single code base just for sample purposes**
+* **Java >= 11**
 
 ## Start locally via Docker Compose
 
