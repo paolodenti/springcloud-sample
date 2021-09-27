@@ -14,7 +14,7 @@
 * prod profile: `ENCRYPT_KEY=MY_SUPER_SECRET_PASSWORD docker compose -f docker/docker-compose-prod.yml up`
 
 <!-- markdownlint-disable MD036 -->
-**It might take 2 minutes to have the product service registered with load balncing on Eureka**
+**It might take 2/3 minutes to have the product service registered with load balancing on Eureka**
 <!-- markdownlint-enable MD036 -->
 
 ## Info
