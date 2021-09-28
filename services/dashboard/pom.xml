@@ -12,7 +12,7 @@
 	<artifactId>dashboard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>dashboard</name>
-	<description>Demo configserver client for Spring Boot</description>
+	<description>Demo dashboard service for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2020.0.4</spring-cloud.version>
@@ -61,6 +61,12 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
