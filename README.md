@@ -95,6 +95,7 @@ The dashbosard and products services print the correlation id just for demonstra
 ```bash
 ( cd services/configserver ; mvn clean spring-boot:build-image )
 ( cd services/eurekaserver ; mvn clean spring-boot:build-image )
+( cd services/gatewayserver ; mvn clean spring-boot:build-image )
 ( cd services/products ; mvn clean spring-boot:build-image )
 ( cd services/dashboard ; mvn clean spring-boot:build-image )
 ```
