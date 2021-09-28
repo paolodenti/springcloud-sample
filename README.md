@@ -21,6 +21,7 @@
 ## Info
 
 * config server on port 8000
+* gatewayserver on port 8500
 * eureka server on port 9000
 * dashboard on port 8080
 * products on port 8081
@@ -65,6 +66,20 @@ After setting the delay, invoke `http://127.0.0.1:8080/dashboard/retry` and anal
 `http://127.0.0.1:8080/dashboard/rateLimiter` has a rat eof 1 request every 5 seconds, with 5 seconds waiting time.
 
 After setting the delay, invoke `http://127.0.0.1:8080/dashboard/retry` and analyze behavior in `http://127.0.0.1:8080/actuator/retryevents/productsRetry`.
+
+## Gateway Server
+
+Configured on port 8500
+
+passthrough on
+
+* `http://127.0.0.1:8500/dashboard/dashboard`
+* `http://127.0.0.1:8500/products/product`
+
+Rewrites on
+
+* `http://127.0.0.1:8500/v1/dashboard/*` ==> `lb://DASHBOARD/*` with custom header `X-My-Custom-Header` added
+* `http://127.0.0.1:8500/v1/products/` ==> `lb://PRODUCTS/*` with custom header `X-My-Custom-Header` added
 
 ## Build everything manually for compose
 
