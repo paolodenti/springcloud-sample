@@ -8,6 +8,7 @@ import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,15 +31,16 @@ public class DashboardController {
 
     // no resilience
     @GetMapping
-    public Map<String, Object> noCheck() {
-        return Map.ofEntries(Map.entry("products", productsFeignClient.getProducts()), Map.entry("posts", postsFeignClient.getPosts()));
+    public Map<String, Object> noCheck(@RequestHeader("X-Correlation-ID") String correlationId) {
+        logger.info("Received correlation ID: '{}'", correlationId);
+        return Map.ofEntries(Map.entry("products", productsFeignClient.getProducts(correlationId)), Map.entry("posts", postsFeignClient.getPosts()));
     }
 
     // circuitbreaker resilience
     @GetMapping("/circuitbreaker")
     @CircuitBreaker(name = "productsCircuitbreaker", fallbackMethod = "circuitbreakerFallBack")
-    public Map<String, Object> circuitbreaker() {
-        return Map.ofEntries(Map.entry("error", false), Map.entry("products", productsFeignClient.getProducts()), Map.entry("posts", postsFeignClient.getPosts()));
+    public Map<String, Object> circuitbreaker(@RequestHeader("X-Correlation-ID") String correlationId) {
+        return Map.ofEntries(Map.entry("error", false), Map.entry("products", productsFeignClient.getProducts(correlationId)), Map.entry("posts", postsFeignClient.getPosts()));
     }
 
     private Map<String, Object> circuitbreakerFallBack(Throwable t) {
@@ -48,8 +50,8 @@ public class DashboardController {
     // retry resilience
     @GetMapping("/retry")
     @Retry(name = "productsRetry", fallbackMethod = "retryFallBack")
-    public Map<String, Object> retry() {
-        return Map.ofEntries(Map.entry("error", false), Map.entry("products", productsFeignClient.getProducts()), Map.entry("posts", postsFeignClient.getPosts()));
+    public Map<String, Object> retry(@RequestHeader("X-Correlation-ID") String correlationId) {
+        return Map.ofEntries(Map.entry("error", false), Map.entry("products", productsFeignClient.getProducts(correlationId)), Map.entry("posts", postsFeignClient.getPosts()));
     }
 
     private Map<String, Object> retryFallBack(Throwable t) {
@@ -59,8 +61,8 @@ public class DashboardController {
     // rate limiter
     @GetMapping("/rateLimiter")
     @RateLimiter(name = "productsRateLimiter", fallbackMethod = "rateLimiterFallBack")
-    public Map<String, Object> rateLimiter() {
-        return Map.ofEntries(Map.entry("error", false), Map.entry("products", productsFeignClient.getProducts()), Map.entry("posts", postsFeignClient.getPosts()));
+    public Map<String, Object> rateLimiter(@RequestHeader("X-Correlation-ID") String correlationId) {
+        return Map.ofEntries(Map.entry("error", false), Map.entry("products", productsFeignClient.getProducts(correlationId)), Map.entry("posts", postsFeignClient.getPosts()));
     }
 
     private Map<String, Object> rateLimiterFallBack(Throwable t) {

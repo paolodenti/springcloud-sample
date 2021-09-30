@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @RefreshScope
 @EnableJpaRepositories("com.github.paolodenti.products.repository")
 @EntityScan("com.github.paolodenti.products.model")
-@EnableAspectJAutoProxy(proxyTargetClass=true)
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class ProductsApplication {
 
     public static void main(String[] args) {
