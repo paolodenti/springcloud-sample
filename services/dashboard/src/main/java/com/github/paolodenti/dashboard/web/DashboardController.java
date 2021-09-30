@@ -33,6 +33,7 @@ public class DashboardController {
     @GetMapping
     public Map<String, Object> noCheck(@RequestHeader("X-Correlation-ID") String correlationId) {
         logger.info("Received correlation ID: '{}'", correlationId);
+        logger.info("executing dashboard noCheck");
         return Map.ofEntries(Map.entry("products", productsFeignClient.getProducts(correlationId)), Map.entry("posts", postsFeignClient.getPosts()));
     }
 
@@ -40,6 +41,7 @@ public class DashboardController {
     @GetMapping("/circuitbreaker")
     @CircuitBreaker(name = "productsCircuitbreaker", fallbackMethod = "circuitbreakerFallBack")
     public Map<String, Object> circuitbreaker(@RequestHeader("X-Correlation-ID") String correlationId) {
+        logger.info("executing dashboard circuitbreaker");
         return Map.ofEntries(Map.entry("error", false), Map.entry("products", productsFeignClient.getProducts(correlationId)), Map.entry("posts", postsFeignClient.getPosts()));
     }
 
@@ -51,6 +53,7 @@ public class DashboardController {
     @GetMapping("/retry")
     @Retry(name = "productsRetry", fallbackMethod = "retryFallBack")
     public Map<String, Object> retry(@RequestHeader("X-Correlation-ID") String correlationId) {
+        logger.info("executing dashboard retry");
         return Map.ofEntries(Map.entry("error", false), Map.entry("products", productsFeignClient.getProducts(correlationId)), Map.entry("posts", postsFeignClient.getPosts()));
     }
 
@@ -62,6 +65,7 @@ public class DashboardController {
     @GetMapping("/rateLimiter")
     @RateLimiter(name = "productsRateLimiter", fallbackMethod = "rateLimiterFallBack")
     public Map<String, Object> rateLimiter(@RequestHeader("X-Correlation-ID") String correlationId) {
+        logger.info("executing dashboard rateLimiter");
         return Map.ofEntries(Map.entry("error", false), Map.entry("products", productsFeignClient.getProducts(correlationId)), Map.entry("posts", postsFeignClient.getPosts()));
     }
 

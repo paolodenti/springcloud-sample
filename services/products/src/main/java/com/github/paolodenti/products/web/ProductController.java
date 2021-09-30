@@ -26,6 +26,7 @@ public class ProductController {
 
     @GetMapping
     public List<Product> products(@RequestHeader("X-Correlation-ID") String correlationId) {
+        logger.info("executing products products");
         logger.info("Received correlation ID: '{}'", correlationId);
         return productRepository.findAll();
     }

@@ -7,6 +7,8 @@
 * Eureka load balancing on backend service
 * Resilience samples with Circuit Breaker, Retry, Rate Limiter
 * Gateway Server with custom routing
+* Distributed tracking with sleuth
+* Log aggregation with zipkin
 * **Single code base just for sample purposes**
 * **Java >= 11**
 
