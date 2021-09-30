@@ -28,6 +28,7 @@
 * eureka server on port 9000
 * dashboard on port 8080
 * products on port 8081
+* zipkin on port 9411 (in not in docker start manually with `docker run -p 9411:9411 openzipkin/zipkin`)
 
 ## Entrypoints
 
@@ -95,9 +96,9 @@ The dashbosard and products services print the correlation id just for demonstra
 ## Build everything manually for compose
 
 ```bash
-( cd services/configserver ; mvn clean spring-boot:build-image )
-( cd services/eurekaserver ; mvn clean spring-boot:build-image )
-( cd services/gatewayserver ; mvn clean spring-boot:build-image )
-( cd services/products ; mvn clean spring-boot:build-image )
-( cd services/dashboard ; mvn clean spring-boot:build-image )
+cd services/configserver ; mvn clean spring-boot:build-image ; cd ../..
+cd services/eurekaserver ; mvn clean spring-boot:build-image ; cd ../..
+cd services/gatewayserver ; mvn clean spring-boot:build-image ; cd ../..
+cd services/products ; mvn clean spring-boot:build-image ; cd ../..
+cd services/dashboard ; mvn clean spring-boot:build-image ; cd ../..
 ```

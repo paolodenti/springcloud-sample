@@ -1,14 +1,24 @@
 version: "3.8"
 
 services:
+    zipkin:
+        image: openzipkin/zipkin:latest
+        ports:
+            - "9411:9411"
+        networks:
+            - springcloudsample-net
+
     configserver:
         image: paolodenti/configserver:latest
         ports:
             - "8000:8000"
         environment:
             - "ENCRYPT_KEY=${ENCRYPT_KEY}"
+            - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
+        depends_on:
+            - zipkin
         networks:
-            - configserver-net
+            - springcloudsample-net
 
     eurekaserver:
         image: paolodenti/eurekaserver:latest
@@ -17,6 +27,7 @@ services:
         environment:
             - "SPRING_PROFILES_ACTIVE=dev"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
+            - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -25,8 +36,9 @@ services:
         depends_on:
             - configserver
             - eurekaserver
+            - zipkin
         networks:
-            - configserver-net
+            - springcloudsample-net
 
     dashboard:
         image: paolodenti/dashboard:latest
@@ -36,6 +48,7 @@ services:
             - "SPRING_PROFILES_ACTIVE=prod"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
+            - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -44,8 +57,9 @@ services:
         depends_on:
             - configserver
             - eurekaserver
+            - zipkin
         networks:
-            - configserver-net
+            - springcloudsample-net
 
     products-1:
         image: paolodenti/products:latest
@@ -55,6 +69,7 @@ services:
             - "SPRING_PROFILES_ACTIVE=prod"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
+            - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -62,8 +77,10 @@ services:
                 window: 120s
         depends_on:
             - configserver
+            - eurekaserver
+            - zipkin
         networks:
-            - configserver-net
+            - springcloudsample-net
 
     products-2:
         image: paolodenti/products:latest
@@ -73,6 +90,7 @@ services:
             - "SPRING_PROFILES_ACTIVE=prod"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
+            - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -80,8 +98,10 @@ services:
                 window: 120s
         depends_on:
             - configserver
+            - eurekaserver
+            - zipkin
         networks:
-            - configserver-net
+            - springcloudsample-net
 
     products-3:
         image: paolodenti/products:latest
@@ -91,6 +111,7 @@ services:
             - "SPRING_PROFILES_ACTIVE=prod"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
+            - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -98,8 +119,10 @@ services:
                 window: 120s
         depends_on:
             - configserver
+            - eurekaserver
+            - zipkin
         networks:
-            - configserver-net
+            - springcloudsample-net
 
     gatewayserver:
         image: paolodenti/gatewayserver:latest
@@ -109,6 +132,7 @@ services:
             - "SPRING_PROFILES_ACTIVE=prod"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
+            - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -117,12 +141,13 @@ services:
         depends_on:
             - configserver
             - eurekaserver
+            - zipkin
             - dashboard
             - products-1
             - products-2
             - products-3
         networks:
-            - configserver-net
+            - springcloudsample-net
 
 networks:
-    configserver-net:
+    springcloudsample-net:
