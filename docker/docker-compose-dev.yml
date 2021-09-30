@@ -18,7 +18,7 @@ services:
         deploy:
             restart_policy:
                 condition: on-failure
-                delay: 5s
+                delay: 15s
                 window: 120s
         depends_on:
             - configserver
@@ -36,7 +36,7 @@ services:
         deploy:
             restart_policy:
                 condition: on-failure
-                delay: 5s
+                delay: 30s
                 window: 120s
         depends_on:
             - configserver
@@ -55,7 +55,7 @@ services:
         deploy:
             restart_policy:
                 condition: on-failure
-                delay: 5s
+                delay: 30s
                 window: 120s
         depends_on:
             - configserver
@@ -74,7 +74,7 @@ services:
         deploy:
             restart_policy:
                 condition: on-failure
-                delay: 5s
+                delay: 30s
                 window: 120s
         depends_on:
             - configserver
@@ -93,7 +93,7 @@ services:
         deploy:
             restart_policy:
                 condition: on-failure
-                delay: 5s
+                delay: 30s
                 window: 120s
         depends_on:
             - configserver
@@ -112,7 +112,7 @@ services:
         deploy:
             restart_policy:
                 condition: on-failure
-                delay: 5s
+                delay: 30s
                 window: 120s
         depends_on:
             - configserver
