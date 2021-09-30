@@ -24,26 +24,6 @@ services:
             - configserver
         networks:
             - configserver-net
-
-    gatewayserver:
-        image: paolodenti/gatewayserver:latest
-        ports:
-            - "8500:8500"
-        environment:
-            - "SPRING_PROFILES_ACTIVE=dev"
-            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
-            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
-        deploy:
-            restart_policy:
-                condition: on-failure
-                delay: 30s
-                window: 120s
-        depends_on:
-            - configserver
-            - eurekaserver
-        networks:
-            - configserver-net
-
     dashboard:
         image: paolodenti/dashboard:latest
         ports:
@@ -117,6 +97,29 @@ services:
         depends_on:
             - configserver
             - eurekaserver
+        networks:
+            - configserver-net
+
+    gatewayserver:
+        image: paolodenti/gatewayserver:latest
+        ports:
+            - "8500:8500"
+        environment:
+            - "SPRING_PROFILES_ACTIVE=dev"
+            - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
+            - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
+        deploy:
+            restart_policy:
+                condition: on-failure
+                delay: 45s
+                window: 180s
+        depends_on:
+            - configserver
+            - eurekaserver
+            - dashboard
+            - products-1
+            - products-2
+            - products-3
         networks:
             - configserver-net
 
