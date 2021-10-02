@@ -32,6 +32,7 @@ Note: all ports are exposed, for debug purposes.
 * products on port 8081
 * zipkin on port 9411 (if not in docker start manually with `docker run --rm --name zipkin -p 9411:9411 openzipkin/zipkin`)
 * rabbitmq management on port 15672
+* grafana (if not in docker start manually with `docker run --rm --name rabbitmq -p 3000:3000 grafana/grafana:latest`, create a prometheus data source and import dashboards, like ids 10280 and 4701)
 
 * optional, commented, sleuth logs to rabbitmq (if not in docker start manually with `docker run --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management`)
 

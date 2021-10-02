@@ -182,5 +182,14 @@ services:
         networks:
             - springcloudsample-net
 
+    grafana:
+        image: grafana/grafana:latest
+        ports:
+            - "3000:3000"
+        depends_on:
+            - prometheus
+        networks:
+            - springcloudsample-net
+
 networks:
     springcloudsample-net:
