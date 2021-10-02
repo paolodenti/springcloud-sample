@@ -8,16 +8,14 @@ services:
         networks:
             - springcloudsample-net
 
-    rabbitmq:
-        image: rabbitmq:3-management
-        ports:
-            - "5672:5672"
-            - "15672:15672"
-        volumes:
-            - ./rabbitmq/etc/definitions.json:/etc/rabbitmq/definitions.json
-        networks:
-            - springcloudsample-net
-
+    #    rabbitmq:
+    #        image: rabbitmq:3-management
+    #        ports:
+    #            - "5672:5672"
+    #            - "15672:15672"
+    #        networks:
+    #            - springcloudsample-net
+    #
     configserver:
         image: paolodenti/configserver:latest
         ports:
@@ -28,7 +26,7 @@ services:
             - "SPRING_RABBITMQ_HOST=rabbitmq"
         depends_on:
             - zipkin
-            - rabbitmq
+            # - rabbitmq
         networks:
             - springcloudsample-net
 
@@ -50,7 +48,7 @@ services:
             - configserver
             - eurekaserver
             - zipkin
-            - rabbitmq
+            # - rabbitmq
         networks:
             - springcloudsample-net
 
@@ -73,7 +71,7 @@ services:
             - configserver
             - eurekaserver
             - zipkin
-            - rabbitmq
+            # - rabbitmq
         networks:
             - springcloudsample-net
 
@@ -96,7 +94,7 @@ services:
             - configserver
             - eurekaserver
             - zipkin
-            - rabbitmq
+            # - rabbitmq
         networks:
             - springcloudsample-net
 
@@ -119,7 +117,7 @@ services:
             - configserver
             - eurekaserver
             - zipkin
-            - rabbitmq
+            # - rabbitmq
         networks:
             - springcloudsample-net
 
@@ -142,7 +140,7 @@ services:
             - configserver
             - eurekaserver
             - zipkin
-            - rabbitmq
+            # - rabbitmq
         networks:
             - springcloudsample-net
 
@@ -165,7 +163,7 @@ services:
             - configserver
             - eurekaserver
             - zipkin
-            - rabbitmq
+              # - rabbitmq
             - dashboard
             - products-1
             - products-2
