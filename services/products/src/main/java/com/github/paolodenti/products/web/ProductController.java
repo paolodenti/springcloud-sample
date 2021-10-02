@@ -5,7 +5,10 @@ import com.github.paolodenti.products.repository.ProductRepository;
 import com.github.paolodenti.products.web.conditioner.ProductControllerConditioner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -25,9 +28,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> products(@RequestHeader("X-Correlation-ID") String correlationId) {
+    public List<Product> products() {
         logger.info("executing products products");
-        logger.info("Received correlation ID: '{}'", correlationId);
         return productRepository.findAll();
     }
 

@@ -87,12 +87,6 @@ Rewrites on
 * `http://127.0.0.1:8500/v1/dashboard/*` ==> `lb://DASHBOARD/*` with custom header `X-My-Custom-Header` added
 * `http://127.0.0.1:8500/v1/products/` ==> `lb://PRODUCTS/*` with custom header `X-My-Custom-Header` added
 
-## Correlation ID
-
-Every request passing through the Gateway Server gets a correlation ID in then HTTP custom header (the header name `X-Correlation-ID` should be externalized).
-
-The dashbosard and products services print the correlation id just for demonstration.
-
 ## Build everything manually for compose
 
 ```bash
