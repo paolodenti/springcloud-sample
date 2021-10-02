@@ -3,6 +3,7 @@ package com.github.paolodenti.products.web;
 import com.github.paolodenti.products.model.Product;
 import com.github.paolodenti.products.repository.ProductRepository;
 import com.github.paolodenti.products.web.conditioner.ProductControllerConditioner;
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ public class ProductController {
     }
 
     @GetMapping
+    @Timed(value = "products.nocheck.time", description = "Time to load products")
     public List<Product> products() {
         logger.info("executing products products");
         return productRepository.findAll();
