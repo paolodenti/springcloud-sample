@@ -9,6 +9,7 @@
 * Gateway Server with custom routing
 * Distributed tracking with sleuth
 * Log aggregation with zipkin
+* K8s sample setup
 * **Single code base just for sample purposes**
 * **Java >= 11**
 
@@ -102,3 +103,8 @@ cd services/gatewayserver ; mvn clean spring-boot:build-image ; cd ../..
 cd services/products ; mvn clean spring-boot:build-image ; cd ../..
 cd services/dashboard ; mvn clean spring-boot:build-image ; cd ../..
 ```
+
+## K8s
+
+* push images
+* `kubectl apply -f ./k8s`
