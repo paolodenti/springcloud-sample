@@ -22,7 +22,7 @@ services:
             - "8000:8000"
         environment:
             - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
-            - "SPRING_RABBITMQ_HOST=rabbitmq"
+            # - "SPRING_RABBITMQ_HOST=rabbitmq"
         depends_on:
             - zipkin
             # - rabbitmq
@@ -37,7 +37,7 @@ services:
             - "SPRING_PROFILES_ACTIVE=dev"
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
-            - "SPRING_RABBITMQ_HOST=rabbitmq"
+            # - "SPRING_RABBITMQ_HOST=rabbitmq"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -58,7 +58,7 @@ services:
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
             - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
-            - "SPRING_RABBITMQ_HOST=rabbitmq"
+            # - "SPRING_RABBITMQ_HOST=rabbitmq"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -81,7 +81,7 @@ services:
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
             - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
-            - "SPRING_RABBITMQ_HOST=rabbitmq"
+            # - "SPRING_RABBITMQ_HOST=rabbitmq"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -104,7 +104,7 @@ services:
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
             - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
-            - "SPRING_RABBITMQ_HOST=rabbitmq"
+            # - "SPRING_RABBITMQ_HOST=rabbitmq"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -127,7 +127,7 @@ services:
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
             - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
-            - "SPRING_RABBITMQ_HOST=rabbitmq"
+            # - "SPRING_RABBITMQ_HOST=rabbitmq"
         deploy:
             restart_policy:
                 condition: on-failure
@@ -150,7 +150,7 @@ services:
             - "SPRING_CONFIG_IMPORT=configserver:http://configserver:8000"
             - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaserver:9000/eureka/"
             - "SPRING_ZIPKIN_BASEURL=http://zipkin:9411/"
-            - "SPRING_RABBITMQ_HOST=rabbitmq"
+            # - "SPRING_RABBITMQ_HOST=rabbitmq"
         deploy:
             restart_policy:
                 condition: on-failure
