@@ -9,7 +9,7 @@
 * Gateway Server with custom routing
 * Distributed tracking with sleuth
 * Log aggregation with zipkin
-* K8s sample setup
+* K8s sample setup with horizontal autoscaler
 * **Single code base just for sample purposes**
 * **Java >= 11**
 

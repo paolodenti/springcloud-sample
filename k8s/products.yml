@@ -53,3 +53,22 @@ spec:
         - protocol: TCP
           port: 8081
           targetPort: 8081
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+    name: products-deployment
+spec:
+    maxReplicas: 10
+    minReplicas: 3
+    scaleTargetRef:
+        apiVersion: apps/v1
+        kind: Deployment
+        name: products-deployment
+    metrics:
+        - type: Resource
+          resource:
+              name: cpu
+              target:
+                  type: Utilization
+                  averageUtilization: 75
